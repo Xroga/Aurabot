@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a0814" />
+  <title>AuraBot — Immersive AI Chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ═══ Atmospheric Background ═══ -->
+  <div class="bg-atmosphere" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+    <div class="noise-overlay"></div>
+  </div>
+
+  <!-- ═══ App Shell ═══ -->
+  <div class="app" id="app">
+
+    <!-- ─── Sidebar ─── -->
+    <aside class="sidebar" id="sidebar" aria-label="Conversation history">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22">
+              <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z" fill="url(#logoGrad)" stroke="url(#logoGrad)" stroke-width="0.5" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="logoGrad" x1="0" y1="0" x2="24" y2="24">
+                  <stop offset="0%" stop-color="#818cf8"/>
+                  <stop offset="100%" stop-color="#c084fc"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <span class="logo-text">AuraBot</span>
+        </div>
+        <button class="icon-btn sidebar-close" id="sidebarClose" aria-label="Close sidebar">
+          <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <button class="new-chat-btn" id="newChatBtn">
+        <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>New Conversation</span>
+      </button>
+
+      <div class="conversations-label">Recent Chats</div>
+      <div class="conversations-list" id="conversationsList">
+        <!-- conversations rendered here -->
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div class="user-avatar">G</div>
+          <div class="user-details">
+            <div class="user-name">Guest User</div>
+            <div class="user-status"><span class="status-pulse"></span>Online</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+    <!-- ─── Chat Area ─── -->
+    <main class="chat-area">
+      <header class="chat-header">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open sidebar">
+          <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+
+        <div class="chat-title">
+          <div class="bot-avatar" id="headerAvatar">
+            <div class="bot-avatar-core">
+              <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+                <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z" fill="white" fill-opacity="0.95"/>
+              </svg>
+            </div>
+            <div class="bot-avatar-ring"></div>
+            <div class="bot-status-dot" id="botStatusDot"></div>
+          </div>
+          <div class="chat-title-text">
+            <h1>AuraBot</h1>
+            <span class="bot-status" id="botStatus">Online · Ready to chat</span>
+          </div>
+        </div>
+
+        <button class="icon-btn clear-btn" id="clearBtn" aria-label="Clear conversation" title="Clear conversation">
+          <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2M19 6l-1 14a1 1 0 01-1 1H7a1 1 0 01-1-1L5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </header>
+
+      <div class="messages-container" id="messagesContainer">
+        <div class="messages" id="messages">
+          <!-- messages or welcome screen rendered here -->
+        </div>
+      </div>
+
+      <div class="input-area">
+        <div class="input-wrapper">
+          <textarea
+            id="messageInput"
+            placeholder="Message AuraBot…"
+            rows="1"
+            autocomplete="off"
+            aria-label="Message input"
+          ></textarea>
+          <button class="send-btn" id="sendBtn" aria-label="Send message" disabled>
+            <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="input-hint">
+          <kbd>Enter</kbd> to send · <kbd>Shift</kbd>+<kbd>Enter</kbd> for new line
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
